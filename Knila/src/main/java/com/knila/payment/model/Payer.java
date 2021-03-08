@@ -18,7 +18,7 @@ public class Payer implements Serializable {
 	@Column(name = "pk_payer_id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pkPayerId;
+	private long pkPayerId;
 
 	@Column(name = "payer_name")
 	private String payerName;
@@ -35,11 +35,11 @@ public class Payer implements Serializable {
 	@Column(name = "amount")
 	private String amount;
 
-	public int getPkPayerId() {
+	public long getPkPayerId() {
 		return pkPayerId;
 	}
 
-	public void setPkPayerId(int pkPayerId) {
+	public void setPkPayerId(long pkPayerId) {
 		this.pkPayerId = pkPayerId;
 	}
 

@@ -1,5 +1,6 @@
 package com.knila.payment;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -17,22 +18,27 @@ import com.knila.payment.service.CustomUserDetailService;
 public class WebSecurityCofig extends WebSecurityConfigurerAdapter {
 
 	@Bean
-	public UserDetailsService userDetailsService() {
+	public UserDetailsService userDetailsService(){
 		return new CustomUserDetailService();
 	}
 
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+	public BCryptPasswordEncoder passwordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-		authProvider.setUserDetailsService(userDetailsService());
-		authProvider.setPasswordEncoder(passwordEncoder());
+			authProvider.setUserDetailsService(userDetailsService());
+			authProvider.setPasswordEncoder(passwordEncoder());
 		return authProvider;
 	}
+
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication().withUser("nani@gmail.com").password("12345678").roles("USER");
+//	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
